@@ -7,4 +7,10 @@ class Solution {
 		int multi = 1;
 		int add = 0;
 
-		for(
+		for(int num : num_list) {
+			multi *= num;
+			add += num;
+		}
+		return multi > add*add ? 0 : 1;
+	}
+}
