@@ -9,4 +9,18 @@ public class Tests {
 	@Test
 	@DisplayName("example 1")
 	void test001() {
-		assertThat(new Sol
+		assertThat(new Solution().solution(new int[]{5, 1, 4})).isEqualTo(new int[]{5, 5, 5, 5, 5, 1, 4, 4, 4, 4});
+	}
+
+	@Test
+	@DisplayName("example 2")
+	void test002() {
+		assertThat(new Solution().solution(new int[]{6, 6})).isEqualTo(new int[]{6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6});
+	}
+
+	@Test
+	@DisplayName("example 3")
+	void test003() {
+		assertThat(new Solution().solution(new int[]{1})).isEqualTo(new int[]{1});
+	}
+}
