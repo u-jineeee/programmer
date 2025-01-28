@@ -17,3 +17,4 @@ public class Tests {
 	void test002() {
 		assertThat(new Solution().solution("AAAAaaaa", "a")).isEqualTo("AAAAaaaa");
 	}
+}
