@@ -9,4 +9,6 @@ public class Tests {
 	@Test
 	@DisplayName("example 1")
 	void test001() {
-		assertThat(new Solution().solution(new int[]{0, 1, 2, 3, 4}, new int[][]{{0, 3},{1, 2},{1, 4}})).isEqualTo(new int
+		assertThat(new Solution().solution(new int[]{0, 1, 2, 3, 4}, new int[][]{{0, 3},{1, 2},{1, 4}})).isEqualTo(new int[]{3, 4, 1, 0, 2});
+	}
+}
