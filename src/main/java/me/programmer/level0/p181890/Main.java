@@ -12,9 +12,10 @@ class Solution {
 			if(str.equals("l") && !flag){
 				flag = true;
 				break;
-			} else if(str.equals("r")) {
+			} else if(str.equals("r") && !flag) {
 				answer = new ArrayList<>();
 				flag = true;
+				continue;
 			}
 			answer.add(str);
 		}

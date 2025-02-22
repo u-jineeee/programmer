@@ -17,4 +17,10 @@ public class Tests {
 	void test002() {
 		assertThat(new Solution().solution(new String[]{"l"})).isEqualTo(new String[]{});
 	}
+
+	@Test
+	@DisplayName("example 3")
+	void test003() {
+		assertThat(new Solution().solution(new String[]{"r"})).isEqualTo(new String[]{});
+	}
 }
