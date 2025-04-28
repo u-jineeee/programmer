@@ -12,35 +12,28 @@ class Solution {
 		for(int i = 0; i < priorities.length; i++) {
 			queue.add(new Process(i, priorities[i]));
 		}
-		for(int i = 0; i < priorities.length-1; i++) {
-			int max = 0;
-			int index = 0;
-			answer++;
-			for(Process p : queue) {
-				if(max <p.getPriority()) {
-					max = p.getPriority();
-					index = p.getLocation();
-				}
-			}
-
-			for(Process process : queue) {
-				if(process.getLocation() == index)
-					break;
-				int l = process.getLocation();
-				int p = process.getPriority();
-				queue.poll();
-				queue.add(new Process(l, p));
-			}
-			queue.poll();
-			if(location == index)
-				return answer;
-		}
 
 		while(!queue.isEmpty()) {
-			int priority = queue.peek().getPriority();
-
+			int l = queue.peek().getLocation();
+			int p = queue.peek().getPriority();
+			boolean flag = true;
+			for(Process process : queue) {
+				if(p < process.getPriority()) {
+					queue.poll();
+					flag = false;
+					break;
+				}
+			}
+			if(!flag)
+				queue.add(new Process(l, p));
+			else {
+				answer++;
+				queue.poll();
+				if(location == l)
+					break;
+			}
 		}
-		return ++answer;
+		return answer;
 	}
 }
 class Process {
