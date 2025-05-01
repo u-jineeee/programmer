@@ -27,12 +27,12 @@ class Solution {
 				int nr = r + dr[i];
 				int nc = c + dc[i];
 
-				if(nr < 0 || nr >= maps.length || nc < 0 || nc >= maps[0].length
-				|| maps[nr][nc] == 0 || visited[nr][nc])
-					continue;
+				if (nr >= 0 && nr < maps.length && nc >= 0 && nc < maps[0].length
+					&& maps[nr][nc] == 1 && !visited[nr][nc]) {
 
-				visited[nr][nc] = true;
-				queue.add(new int[]{nr, nc, dist+1});
+					visited[nr][nc] = true;
+					queue.add(new int[]{nr, nc, dist + 1});
+				}
 			}
 		}
 		return -1;
