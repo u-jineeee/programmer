@@ -1,15 +1,12 @@
 package me.programmer.level2.p17677;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Main {
 }
 class Solution {
 	public int solution(String str1, String str2) {
-		int answer = 1;
 		Map<String, Integer> map1 = getStringMap(str1);
 		Map<String, Integer> map2 = getStringMap(str2);
 		int intersection = 0;
@@ -17,10 +14,15 @@ class Solution {
 
 		for(Map.Entry<String, Integer> map : map1.entrySet()) {
 			intersection += Math.min(map.getValue(), map2.getOrDefault(map.getKey(), 0));
+			union += map.getValue();
 		}
-		union = map1.size() + map2.size() - intersection;
+		for(Map.Entry<String, Integer> map : map2.entrySet()) {
+			union += map.getValue();
+		}
+
+		union = union - intersection;
 		double x = (double) intersection / union * 65536;
-		return (int)x;
+		return map1.size() == 0 && map2.size() == 0 ? 65536 : (int)x;
 	}
 	public Map<String, Integer> getStringMap(String str) {
 		Map<String, Integer> map = new HashMap<>();

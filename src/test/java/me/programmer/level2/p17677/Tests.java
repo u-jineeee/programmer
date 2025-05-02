@@ -27,6 +27,6 @@ public class Tests {
 	@Test
 	@DisplayName("example 4")
 	void test004() {
-		assertThat(new Solution().solution("E=M*C^2\t", "e=m*c^2")).isEqualTo(65536);
+		assertThat(new Solution().solution("E=M*C^2", "e=m*c^2")).isEqualTo(65536);
 	}
 }
