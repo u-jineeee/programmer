@@ -11,27 +11,32 @@ class Solution {
 	public int[] solution(String msg) {
 		List<Integer> answer = new ArrayList<>();
 		Map<String, Integer> map = new HashMap<>();
-		for(int i = 0; i < 26; i++) {
-			char c = (char)('A' + i);
-			map.put(String.valueOf(c), i+1);
+
+		int nextIndex = 1;
+		for(char c = 'A'; c <= 'Z'; c++) {
+			map.put(String.valueOf(c), nextIndex++);
 		}
-		for(int i = 0; i < msg.length(); i++) {
-			StringBuilder s1 = new StringBuilder();
-			s1.append(msg.charAt(i));
-			int n = map.get(s1.toString());
-			if(i == msg.length()-1) {
-				answer.add(n);
-				break;
-			}
-			while(i < msg.length()-1) {
-				s1.append(msg.charAt(i+1));
-				if(map.get(s1.toString()) == null)
+
+		int i = 0;
+		while(i < msg.length()) {
+			String w = "";
+			int wIndex = -1;
+			int j = i;
+
+			while(j < msg.length()) {
+				String currentWord = msg.substring(i, j + 1);
+
+				if(map.containsKey(currentWord)) {
+					w = currentWord;
+					wIndex = map.get(w);
+					j++;
+				} else {
+					map.put(currentWord, nextIndex++);
 					break;
-				i++;
-				n = map.get(s1.toString());
+				}
 			}
-			answer.add(n);
-			map.put(s1.toString(), map.size()+1);
+			answer.add(wIndex);
+			i += w.length();
 		}
 
 		return answer.stream().mapToInt(Integer::intValue).toArray();
