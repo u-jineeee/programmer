@@ -9,7 +9,7 @@ class Solution {
 		int[] answer = new int[prices.length];
 		Stack<Integer> stack = new Stack<>();
 		for(int i = 0; i < prices.length; i++) {
-			if(!stack.isEmpty() && prices[i] < prices[stack.peek()]) {
+			while(!stack.isEmpty() && prices[i] < prices[stack.peek()]) {
 				int idx = stack.pop();
 				answer[idx] = i - idx;
 			}
