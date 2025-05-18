@@ -21,6 +21,6 @@ public class Tests {
 	@Test
 	@DisplayName("example 3")
 	void test003() {
-		assertThat(new Solution().solution(new int[]{180, 5000, 10, 600}, new String[]{"00:00 1234 IN"})).isEqualTo(new int[]{14841});
+		assertThat(new Solution().solution(new int[]{1, 461, 1, 10}, new String[]{"00:00 1234 IN"})).isEqualTo(new int[]{14841});
 	}
 }

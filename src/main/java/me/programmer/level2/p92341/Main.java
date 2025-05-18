@@ -2,14 +2,33 @@ package me.programmer.level2.p92341;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Main {
 }
 class Solution {
 	public int[] solution(int[] fees, String[] records) {
-		int[] answer = new int[records.length];
+		List<Integer> answer =new ArrayList<>();
+		Map<String, Car> map = new TreeMap<>();
+		for(String record : records) {
+			String[] arr = record.split(" ");
+			String carNumber = arr[1];
+			Car newCar = map.getOrDefault(carNumber, new Car(carNumber));
+			if(arr[2].equals("IN"))
+				newCar.addEntryTime(arr[0]);
+			else
+				newCar.addExitTime(arr[0]);
+			map.put(carNumber, newCar);
+		}
 
-		return answer;
+		for(Map.Entry<String, Car> entryMap : map.entrySet()) {
+			entryMap.getValue().calculateTotalParkingTime();
+			entryMap.getValue().calculateParkingFee(fees);
+			int fee = entryMap.getValue().getParkingFee();
+			answer.add(fee);
+		}
+		return answer.stream().mapToInt(Integer::intValue).toArray();
 	}
 }
 class Car {
@@ -49,7 +68,7 @@ class Car {
 		int exitIdx = 0;
 		while(entryIdx < entryMinutes.size()) {
 			int entry = entryMinutes.get(entryIdx);
-			int exit = 0;
+			int exit;
 
 			if(exitIdx < exitMinutes.size()) {
 				exit = exitMinutes.get(exitIdx);
